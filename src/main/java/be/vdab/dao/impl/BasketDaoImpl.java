@@ -1,4 +1,4 @@
 package be.vdab.dao.impl;
 
-public class EshopImplDao {
+public class BasketDaoImpl {
 }

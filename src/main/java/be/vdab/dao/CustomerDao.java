@@ -1,4 +1,4 @@
 package be.vdab.dao;
 
-public class CustomerDao {
+public interface CustomerDao {
 }
