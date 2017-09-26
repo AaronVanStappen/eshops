@@ -20,10 +20,10 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public List<Order> findOrdersForCustomers(Customer customer) {
-        String sql = "select * from orders where customerId=?";
+        String sql1 = "select * from orders where customerId=?;";
         orderList = new ArrayList<>();
         try (Connection con = getConnection();
-             PreparedStatement stmt = con.prepareStatement(sql)) {
+             PreparedStatement stmt = con.prepareStatement(sql1)) {
             con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
             con.setAutoCommit(false);
             stmt.setInt(1, customer.getId());
@@ -33,6 +33,7 @@ public class OrderDaoImpl implements OrderDao {
                             rs.getDate("date"), rs.getInt("customerId"), rs.getInt("e-shopId")));
                 }
             }
+            con.commit();
         } catch (SQLException e) {
             LOGGER.error("customer not found - " + e);
         }
@@ -41,6 +42,24 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public void saveOrder(Order order) {
-
+        String sql2 = "insert into orders (id, payment_method, order_total, date, customerId, eshopId) " +
+                "values(null, ?, ?, ?, ?, ?);";
+        String addProduct = "insert into producten (prod_nr, prod_code, merk, naam, volume, prijs, soort_id, type_id) " +
+                "values (null, ?, ?, ?, ?, ?, ?, ?);";
+        try (Connection con = getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql2)) {
+            con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+            con.setAutoCommit(false);
+            stmt.setString(1, order.getPaymethod());
+            stmt.setInt(2, order.getOrderTotal());
+            stmt.setDate(3, order.getDate());
+            stmt.setInt(4, order.getCustomerId());
+            stmt.setInt(5, order.getEshopId());
+            int i = stmt.executeUpdate();
+            System.out.println(i);
+            con.commit();
+        } catch (SQLException e) {
+            LOGGER.error("could not save order - " + e);
+        }
     }
 }

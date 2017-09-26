@@ -1,10 +1,10 @@
 package be.vdab.entiteiten;
 
 public class Product {
-    int id;
-    String name;
-    double price;
-    int stock;
+    private int id;
+    private String name;
+    private double price;
+    private int stock;
 
     public Product(int id, String name, double price, int stock) {
         this.setId(id);
@@ -26,7 +26,7 @@ public class Product {
         return name;
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
 
@@ -34,7 +34,7 @@ public class Product {
         return price;
     }
 
-    public void setPrice(double price) {
+    private void setPrice(double price) {
         this.price = price;
     }
 
@@ -42,7 +42,7 @@ public class Product {
         return stock;
     }
 
-    public void setStock(int stock) {
+    private void setStock(int stock) {
         this.stock = stock;
     }
 

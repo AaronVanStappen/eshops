@@ -2,7 +2,6 @@ package be.vdab.dao.impl;
 
 import be.vdab.dao.ShopDao;
 import be.vdab.entiteiten.Eshop;
-import be.vdab.entiteiten.Product;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -27,7 +26,8 @@ public class ShopDaoImpl implements ShopDao {
             con.setAutoCommit(false);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    eshopList.add(new Eshop(rs.getInt("id"), rs.getString("info"), rs.getString("address")));
+                    eshopList.add(new Eshop(rs.getInt("id"),
+                            rs.getString("info"), rs.getString("address")));
                 }
             }
         } catch (SQLException e) {

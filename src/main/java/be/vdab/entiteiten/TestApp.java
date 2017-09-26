@@ -8,8 +8,13 @@ import be.vdab.dao.impl.CustomerDaoImpl;
 import be.vdab.dao.impl.OrderDaoImpl;
 import be.vdab.dao.impl.ProductDaoImpl;
 import be.vdab.dao.impl.ShopDaoImpl;
+import org.apache.log4j.Logger;
+
+import java.sql.*;
 
 public class TestApp {
+    private static final Logger LOGGER = Logger.getLogger(TestApp.class);
+
     public static void main(String[] args) {
         ShopDao test = new ShopDaoImpl();
         test.listAllShops().forEach(System.out::println);
@@ -19,7 +24,9 @@ public class TestApp {
         System.out.println(test3.findCustomers("Van Stappen", "Aaron", "AaronVS"));
         System.out.println(test3.findByLoginAndUsername("JulieM", "vier321"));
         OrderDao test4 = new OrderDaoImpl();
-        CustomerDao customer = new CustomerDaoImpl();
-        test4.findOrdersForCustomers(customer.findCustomers("Menten", "Julie", "JulieM")).forEach(System.out::println);
+        test4.findOrdersForCustomers(test3.findCustomers("Van Stappen", "Aaron", "AaronVS"))
+                .forEach(System.out::println);
+        System.out.println(test3.findCustomers("Van Stappen", "Aaron", "AaronVS").getId());
+        test4.saveOrder(new Order(0, "mastercard", 5, Date.valueOf("2017-8-25"), 2, 1));
     }
 }
