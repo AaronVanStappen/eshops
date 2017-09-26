@@ -34,4 +34,9 @@ public class Eshop {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    @Override
+    public String toString() {
+        return id + ", " + info + ", " + address;
+    }
 }

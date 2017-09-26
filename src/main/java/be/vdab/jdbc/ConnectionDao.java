@@ -9,7 +9,7 @@ public class ConnectionDao {
     private static final String USER = "cursist";
     private static final String PASSWORD = "12345";
 
-    private static Connection getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }

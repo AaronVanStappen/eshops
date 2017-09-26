@@ -66,4 +66,9 @@ public class Order {
     public void setEshopId(int eshopId) {
         this.eshopId = eshopId;
     }
+
+    @Override
+    public String toString() {
+        return id + ", " + paymethod + ", " + orderTotal + ", " + date + ", " + customerId + ", " + eshopId;
+    }
 }
