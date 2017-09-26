@@ -32,7 +32,7 @@ public class Customer extends User {
         this.name = name;
     }
 
-    private String getFirst_name() {
+    public String getFirst_name() {
         return first_name;
     }
 

@@ -32,7 +32,7 @@ public class Basket {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    private void setProductId(int productId) {
         this.productId = productId;
     }
 
@@ -40,7 +40,7 @@ public class Basket {
         return amount;
     }
 
-    public void setAmount(float amount) {
+    private void setAmount(float amount) {
         this.amount = amount;
     }
 }

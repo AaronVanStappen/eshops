@@ -23,7 +23,7 @@ public class Eshop {
         return info;
     }
 
-    public void setInfo(String info) {
+    private void setInfo(String info) {
         this.info = info;
     }
 
@@ -31,7 +31,7 @@ public class Eshop {
         return address;
     }
 
-    public void setAddress(String address) {
+    private void setAddress(String address) {
         this.address = address;
     }
 

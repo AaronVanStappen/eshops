@@ -30,7 +30,7 @@ public class OrderDaoImpl implements OrderDao {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     orderList.add(new Order(rs.getInt("id"), rs.getString("payment_method"), rs.getInt("order_total"),
-                            rs.getDate("date"), rs.getInt("customerId"), rs.getInt("e-shopId")));
+                            rs.getDate("date"), rs.getInt("customerId"), rs.getInt("eshopId")));
                 }
             }
             con.commit();

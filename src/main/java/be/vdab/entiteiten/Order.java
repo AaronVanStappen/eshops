@@ -31,7 +31,7 @@ public class Order {
         return paymethod;
     }
 
-    public void setPaymethod(String paymethod) {
+    private void setPaymethod(String paymethod) {
         this.paymethod = paymethod;
     }
 
@@ -39,7 +39,7 @@ public class Order {
         return orderTotal;
     }
 
-    public void setOrderTotal(int orderTotal) {
+    private void setOrderTotal(int orderTotal) {
         this.orderTotal = orderTotal;
     }
 
@@ -47,7 +47,7 @@ public class Order {
         return date;
     }
 
-    public void setDate(Date date) {
+    private void setDate(Date date) {
         this.date = date;
     }
 
@@ -55,7 +55,7 @@ public class Order {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    private void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
@@ -63,7 +63,7 @@ public class Order {
         return eshopId;
     }
 
-    public void setEshopId(int eshopId) {
+    private void setEshopId(int eshopId) {
         this.eshopId = eshopId;
     }
 
