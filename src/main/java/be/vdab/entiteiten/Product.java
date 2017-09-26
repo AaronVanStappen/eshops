@@ -7,10 +7,10 @@ public class Product {
     int stock;
 
     public Product(int id, String name, double price, int stock) {
-        setId(id);
-        setName(name);
-        setPrice(price);
-        setStock(stock);
+        this.setId(id);
+        this.setName(name);
+        this.setPrice(price);
+        this.setStock(stock);
     }
 
 

@@ -11,12 +11,12 @@ public class Order {
     private int eshopId;
 
     public Order(int id, String paymethod, int orderTotal, Date date, int customerId, int eshopId) {
-        setId(id);
-        setPaymethod(paymethod);
-        setOrderTotal(orderTotal);
-        setDate(date);
-        setCustomerId(customerId);
-        setEshopId(eshopId);
+        this.setId(id);
+        this.setPaymethod(paymethod);
+        this.setOrderTotal(orderTotal);
+        this.setDate(date);
+        this.setCustomerId(customerId);
+        this.setEshopId(eshopId);
     }
 
     public int getId() {
