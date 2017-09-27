@@ -1,6 +1,7 @@
 package be.vdab.dao.impl;
 
 import be.vdab.dao.CustomerDao;
+import be.vdab.entiteiten.User;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -20,6 +21,8 @@ public class CustomerDaoImplTest {
 
     @Test
     public void findByLoginAndUsername() {
+        assertThat(customer.findByLoginAndUsername("JulieM", "vier321").getId()).isEqualTo(2);
+        assertThat(customer.findByLoginAndUsername("JulieM", "vier321")).isInstanceOf(User.class);
     }
 
 }

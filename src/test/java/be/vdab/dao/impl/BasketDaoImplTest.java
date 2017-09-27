@@ -1,10 +1,13 @@
 package be.vdab.dao.impl;
 
+import be.vdab.dao.BasketDao;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.*;
 
 public class BasketDaoImplTest {
+    private BasketDao basket = new BasketDaoImpl();
+
     @Test
     public void saveOrUpdateBasket() throws Exception {
     }
@@ -22,7 +25,7 @@ public class BasketDaoImplTest {
     }
 
     @Test
-    public void clearBasket() throws Exception {
+    public void clearBasket() {
     }
 
 }
