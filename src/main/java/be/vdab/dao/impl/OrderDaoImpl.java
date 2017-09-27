@@ -16,12 +16,11 @@ import static be.vdab.jdbc.ConnectionDao.getConnection;
 
 public class OrderDaoImpl implements OrderDao {
     private static final Logger LOGGER = Logger.getLogger(OrderDaoImpl.class);
-    private List<Order> orderList;
 
     @Override
     public List<Order> findOrdersForCustomers(Customer customer) {
         String sql1 = "select * from orders where customerId=?;";
-        orderList = new ArrayList<>();
+        List<Order> orderList = new ArrayList<>();
         try (Connection con = getConnection();
              PreparedStatement stmt = con.prepareStatement(sql1)) {
             con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
@@ -29,7 +28,8 @@ public class OrderDaoImpl implements OrderDao {
             stmt.setInt(1, customer.getId());
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    orderList.add(new Order(rs.getInt("id"), rs.getString("payment_method"), rs.getInt("order_total"),
+                    orderList.add(new Order(rs.getInt("id"), rs.getString("payment_method"),
+                            rs.getInt("order_total"),
                             rs.getDate("date"), rs.getInt("customerId"), rs.getInt("eshopId")));
                 }
             }
@@ -44,8 +44,6 @@ public class OrderDaoImpl implements OrderDao {
     public void saveOrder(Order order) {
         String sql2 = "insert into orders (id, payment_method, order_total, date, customerId, eshopId) " +
                 "values(null, ?, ?, ?, ?, ?);";
-        String addProduct = "insert into producten (prod_nr, prod_code, merk, naam, volume, prijs, soort_id, type_id) " +
-                "values (null, ?, ?, ?, ?, ?, ?, ?);";
         try (Connection con = getConnection();
              PreparedStatement stmt = con.prepareStatement(sql2)) {
             con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);

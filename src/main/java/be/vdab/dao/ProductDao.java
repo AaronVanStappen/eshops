@@ -9,4 +9,6 @@ public interface ProductDao {
     void sortProducts();
     void sortProductsByPriceAsc();
     void sortProductsByPriceDesc();
+    List<Product> getProducts();
+    Product get(int i);
 }

@@ -10,6 +10,14 @@ public class Order {
     private int customerId;
     private int eshopId;
 
+    /*public Order(String paymethod, double orderTotal, Date date, int customerId, int eshopId) {
+        this.setPaymethod(paymethod);
+        this.setOrderTotal(orderTotal);
+        this.setDate(date);
+        this.setCustomerId(customerId);
+        this.setEshopId(eshopId);
+    }*/
+
     public Order(int id, String paymethod, double orderTotal, Date date, int customerId, int eshopId) {
         this.setId(id);
         this.setPaymethod(paymethod);

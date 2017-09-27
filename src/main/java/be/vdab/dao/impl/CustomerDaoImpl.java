@@ -30,6 +30,7 @@ public class CustomerDaoImpl implements CustomerDao {
             stmt.setString(3, username);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
+                    System.out.println(rs.getInt("id"));
                     customer = new Customer(rs.getInt("id"),
                             rs.getString("username"), rs.getString("password"),
                             rs.getString("name"), rs.getString("first_name"),

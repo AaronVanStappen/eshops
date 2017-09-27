@@ -16,7 +16,8 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public List<Product> findProducts(String productname) {
-        String sql = "select * from products where name like ?;";
+        productname = "'%".concat(productname).concat("%'");
+        String sql = "select * from products where name like " + productname +" ;";
         addToList(sql);
         return products;
     }
@@ -37,6 +38,18 @@ public class ProductDaoImpl implements ProductDao {
     public void sortProductsByPriceDesc() {
         String sql = "select * from products order by price desc;";
         addToList(sql);
+    }
+
+    @Override
+    public List<Product> getProducts() {
+        String sql = "select * from products;";
+        addToList(sql);
+        return products;
+    }
+
+    @Override
+    public Product get(int i) {
+        return products.get(i);
     }
 
     private void addToList(String query) {
