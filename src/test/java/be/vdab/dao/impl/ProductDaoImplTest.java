@@ -21,20 +21,20 @@ public class ProductDaoImplTest {
     public void sortProducts() {
         products.sortProducts();
         Product p = products.get(0);
-        assertThat(p).isEqualTo(new Product(1, "MacBoook Pro 15", 2355.50, 5));
+        assertThat(p).isEqualTo(new Product(1, "MacBook Pro 15", 2355.50, 5));
     }
 
     @Test
     public void sortProductsByPriceAsc() {
         products.sortProductsByPriceAsc();
-        Product p = products.get(9);
-        assertThat(p).isEqualTo(new Product(1, "MacBoook Pro 15", 2355.50, 5));
+        Product p = products.get(8);
+        assertThat(p).isEqualTo(new Product(1, "MacBook Pro 15", 2355.50, 5));
     }
 
     @Test
     public void sortProductsByPriceDesc() {
         products.sortProductsByPriceDesc();
         Product p = products.get(0);
-        assertThat(p).isEqualTo(new Product(1, "MacBoook Pro 15", 2355.50, 5));
+        assertThat(p).isEqualTo(new Product(1, "MacBook Pro 15", 2355.50, 5));
     }
 }
