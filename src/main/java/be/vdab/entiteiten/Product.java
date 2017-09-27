@@ -22,7 +22,7 @@ public class Product {
         this.id = id;
     }
 
-    public String getName() {
+    private String getName() {
         return name;
     }
 
@@ -30,7 +30,7 @@ public class Product {
         this.name = name;
     }
 
-    public double getPrice() {
+    private double getPrice() {
         return price;
     }
 
@@ -38,12 +38,35 @@ public class Product {
         this.price = price;
     }
 
-    public int getStock() {
+    private int getStock() {
         return stock;
     }
 
     private void setStock(int stock) {
         this.stock = stock;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+
+        Product product = (Product) o;
+
+        return getId()==product.getId() && Double.compare(product.getPrice(), getPrice())==0
+               && getStock()==product.getStock() && getName().equals(product.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = getId();
+        result = 31 * result + getName().hashCode();
+        temp = Double.doubleToLongBits(getPrice());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + getStock();
+        return result;
     }
 
     @Override

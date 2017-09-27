@@ -5,12 +5,12 @@ import java.sql.Date;
 public class Order {
     private int id;
     private String paymethod;
-    private int orderTotal;
+    private double orderTotal;
     private Date date;
     private int customerId;
     private int eshopId;
 
-    public Order(int id, String paymethod, int orderTotal, Date date, int customerId, int eshopId) {
+    public Order(int id, String paymethod, double orderTotal, Date date, int customerId, int eshopId) {
         this.setId(id);
         this.setPaymethod(paymethod);
         this.setOrderTotal(orderTotal);
@@ -35,11 +35,11 @@ public class Order {
         this.paymethod = paymethod;
     }
 
-    public int getOrderTotal() {
+    public double getOrderTotal() {
         return orderTotal;
     }
 
-    private void setOrderTotal(int orderTotal) {
+    private void setOrderTotal(double orderTotal) {
         this.orderTotal = orderTotal;
     }
 

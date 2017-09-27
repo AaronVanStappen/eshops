@@ -51,7 +51,7 @@ public class OrderDaoImpl implements OrderDao {
             con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
             con.setAutoCommit(false);
             stmt.setString(1, order.getPaymethod());
-            stmt.setInt(2, order.getOrderTotal());
+            stmt.setDouble(2, order.getOrderTotal());
             stmt.setDate(3, order.getDate());
             stmt.setInt(4, order.getCustomerId());
             stmt.setInt(5, order.getEshopId());

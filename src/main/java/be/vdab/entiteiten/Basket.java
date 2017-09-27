@@ -1,46 +1,45 @@
 package be.vdab.entiteiten;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Basket {
-    private int id;
-    private int productId;
-    private float amount;
-    private List<Product> basket;
 
-    public Basket(int id, int productId, float amount) {
-        this.setId(id);
-        this.setProductId(productId);
-        this.setAmount(amount);
-        basket = new ArrayList<>();
+    private Map<Product, Double> producten = new HashMap<>();
+
+    public Basket() {}
+
+    public void addToBasket(Product product, double amount) {
+        producten.put(product, amount);
     }
 
-    public int getId() {
-        return id;
+    public void removeFromBasket(Product product) {
+        producten.remove(product);
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Map<Product, Double> getProducten() {
+        return producten;
     }
 
-    public List<Product> getBasket() {
-        return basket;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Basket)) return false;
+
+        Basket basket = (Basket) o;
+
+        return producten.equals(basket.producten);
     }
 
-    public int getProductId() {
-        return productId;
+    @Override
+    public int hashCode() {
+        return producten.hashCode();
     }
 
-    private void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public float getAmount() {
-        return amount;
-    }
-
-    private void setAmount(float amount) {
-        this.amount = amount;
+    @Override
+    public String toString() {
+        return producten.keySet().toString() + ", " + producten.values().toString();
     }
 }
