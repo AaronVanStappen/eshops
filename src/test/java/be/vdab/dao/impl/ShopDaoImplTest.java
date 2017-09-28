@@ -1,7 +1,6 @@
 package be.vdab.dao.impl;
 
 import be.vdab.dao.ShopDao;
-import be.vdab.entiteiten.Eshop;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.*;
