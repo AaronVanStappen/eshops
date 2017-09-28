@@ -14,23 +14,18 @@ import java.sql.SQLException;
 import static be.vdab.jdbc.ConnectionDao.getConnection;
 
 public class CustomerDaoImpl implements CustomerDao {
-    private static final Logger LOGGER = Logger.getLogger(ProductDaoImpl.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ProductDaoImpl.class);
     private Customer customer;
     private User user;
 
     @Override
-    public Customer findCustomers(String name, String firstname, String username) {
-        String sql = "select * from customers where name=? and first_name=? and username=?;";
+    public Customer findCustomers(String username) {
+        String sql = "select * from customers where username=?;";
         try (Connection con = getConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
-            con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
-            con.setAutoCommit(false);
-            stmt.setString(1, name);
-            stmt.setString(2, firstname);
-            stmt.setString(3, username);
+            stmt.setString(1, username);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    System.out.println(rs.getInt("id"));
                     customer = new Customer(rs.getInt("id"),
                             rs.getString("username"), rs.getString("password"),
                             rs.getString("name"), rs.getString("first_name"),
@@ -48,8 +43,6 @@ public class CustomerDaoImpl implements CustomerDao {
         String sql = "select * from customers where username=? and password=?;";
         try (Connection con = getConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
-            con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
-            con.setAutoCommit(false);
             stmt.setString(1, username);
             stmt.setString(2, password);
             try (ResultSet rs = stmt.executeQuery()) {

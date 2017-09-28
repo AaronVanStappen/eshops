@@ -15,12 +15,12 @@ public class TestApp {
         ProductDao test2 = new ProductDaoImpl();
         test2.findProducts("Mac").forEach(System.out::println);
         CustomerDao test3 = new CustomerDaoImpl();
-        System.out.println(test3.findCustomers("Van Stappen", "Aaron", "AaronVS"));
+        System.out.println(test3.findCustomers("AaronVS"));
         System.out.println(test3.findByLoginAndUsername("JulieM", "vier321"));
         OrderDao test4 = new OrderDaoImpl();
-        test4.findOrdersForCustomers(test3.findCustomers("Van Stappen", "Aaron", "AaronVS"))
+        test4.findOrdersForCustomers(test3.findCustomers("AaronVS"))
                 .forEach(System.out::println);
-        System.out.println(test3.findCustomers("Van Stappen", "Aaron", "AaronVS").getId());
+        System.out.println(test3.findCustomers("AaronVS").getId());
         test4.saveOrder(new Order(0, "mastercard", 5, Date.valueOf("2017-8-25"), 2, 1));
         BasketDao test5 = new BasketDaoImpl();
         test5.addProductToBasket(new Product(0, "Magic Mouse", 64.99, 5), 2);
@@ -31,6 +31,5 @@ public class TestApp {
         System.out.println(test5.getBasket());
         test5.clearBasket();
         System.out.println(test5.getBasket());
-
     }
 }

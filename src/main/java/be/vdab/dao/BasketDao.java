@@ -4,6 +4,8 @@ import be.vdab.entiteiten.Basket;
 import be.vdab.entiteiten.Product;
 
 public interface BasketDao {
+    void checkOutBasket(Basket basket);
+
     void saveOrUpdateBasket(Basket basket);
 
     void addProductToBasket(Product product, double amount);

@@ -15,18 +15,14 @@ public class OrderDaoImplTest {
 
     @Test
     public void findOrdersForCustomers() {
-        assertThat(order.findOrdersForCustomers(customer.findCustomers("Menten", "Julie",
-                "JulieM"))).isNotNull();
-        assertThat(order.findOrdersForCustomers(customer.findCustomers("Menten", "Julie",
-                "JulieM")).get(0).getId()).isEqualTo(2);
-        assertThat(order.findOrdersForCustomers(customer.findCustomers("Menten", "Julie",
-                "JulieM"))).hasSize(16);
+        assertThat(order.findOrdersForCustomers(customer.findCustomers("JulieM"))).isNotNull();
+        assertThat(order.findOrdersForCustomers(customer.findCustomers("JulieM")).get(0).getId()).isEqualTo(2);
+        assertThat(order.findOrdersForCustomers(customer.findCustomers("JulieM"))).hasSize(16);
     }
 
     @Test
     public void saveOrder() {
         order.saveOrder(order2);
-        assertThat(order.findOrdersForCustomers(customer.findCustomers("Van Stappen", "Aaron",
-                "AaronVS")).get(2).getPaymethod()).isEqualTo("PayPall");
+        assertThat(order.findOrdersForCustomers(customer.findCustomers("AaronVS")).get(2).getPaymethod()).isEqualTo("PayPall");
     }
 }

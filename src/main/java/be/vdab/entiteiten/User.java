@@ -3,12 +3,17 @@ package be.vdab.entiteiten;
 public class User {
     private int id;
     private String username;
-    private String pasword;
+    private String password;
 
-    public User(int id, String username, String pasword) {
+    public User(String username, String password) {
+        this.setUsername(username);
+        this.setPassword(password);
+    }
+
+    public User(int id, String username, String password) {
         this.setId(id);
         this.setUsername(username);
-        this.setPasword(pasword);
+        this.setPassword(password);
     }
     public int getId() {
         return id;
@@ -26,16 +31,16 @@ public class User {
         this.username = username;
     }
 
-    public String getPasword() {
-        return pasword;
+    public String getPassword() {
+        return password;
     }
 
-    private void setPasword(String pasword) {
-        this.pasword = pasword;
+    private void setPassword(String pasword) {
+        this.password = pasword;
     }
 
     @Override
     public String toString() {
-        return id + ", " + username + ", " + pasword;
+        return id + ", " + username + ", " + password;
     }
 }

@@ -11,11 +11,11 @@ public class CustomerDaoImplTest {
 
     @Test
     public void findCustomers() {
-        assertThat(customer.findCustomers("Menten", "Julie", "JulieM").getEmail())
+        assertThat(customer.findCustomers("JulieM").getEmail())
                 .isEqualTo("julie@menten.be");
-        assertThat(customer.findCustomers("Menten", "Julie", "JulieM").getEmail())
+        assertThat(customer.findCustomers("JulieM").getEmail())
                 .isNotNull();
-        assertThat(customer.findCustomers("Menten", "Julie", "JulieM").getId())
+        assertThat(customer.findCustomers("JulieM").getId())
                 .isEqualTo(2);
     }
 

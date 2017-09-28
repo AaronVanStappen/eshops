@@ -14,7 +14,7 @@ import java.util.List;
 import static be.vdab.jdbc.ConnectionDao.getConnection;
 
 public class ShopDaoImpl implements ShopDao {
-    private static final Logger LOGGER = Logger.getLogger(ProductDaoImpl.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ProductDaoImpl.class);
 
     @Override
     public List<Eshop> listAllShops() {
@@ -22,8 +22,6 @@ public class ShopDaoImpl implements ShopDao {
         List<Eshop> eshopList = new ArrayList<>();
         try (Connection con = getConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
-            con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
-            con.setAutoCommit(false);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     eshopList.add(new Eshop(rs.getInt("id"),

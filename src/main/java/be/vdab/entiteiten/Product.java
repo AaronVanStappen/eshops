@@ -6,13 +6,18 @@ public class Product {
     private double price;
     private int stock;
 
+    public Product(String name, double price, int stock) {
+        this.setName(name);
+        this.setPrice(price);
+        this.setStock(stock);
+    }
+
     public Product(int id, String name, double price, int stock) {
         this.setId(id);
         this.setName(name);
         this.setPrice(price);
         this.setStock(stock);
     }
-
 
     public int getId() {
         return id;
@@ -53,20 +58,23 @@ public class Product {
 
         Product product = (Product) o;
 
-        return getId()==product.getId() && Double.compare(product.getPrice(), getPrice())==0
-               && getStock()==product.getStock() && getName().equals(product.getName());
+        return this.getId() == product.getId();
+
+        /*return getId()==product.getId() && Double.compare(product.getPrice(), getPrice())==0
+               && getStock()==product.getStock() && getName().equals(product.getName());*/
     }
 
     @Override
     public int hashCode() {
-        int result;
+        /*int result;
         long temp;
         result = getId();
         result = 31 * result + getName().hashCode();
         temp = Double.doubleToLongBits(getPrice());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + getStock();
-        return result;
+        return result;*/
+        return id;
     }
 
     @Override

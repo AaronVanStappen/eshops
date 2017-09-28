@@ -46,8 +46,6 @@ public class OrderDaoImpl implements OrderDao {
                 "values(null, ?, ?, ?, ?, ?);";
         try (Connection con = getConnection();
              PreparedStatement stmt = con.prepareStatement(sql2)) {
-            con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
-            con.setAutoCommit(false);
             stmt.setString(1, order.getPaymethod());
             stmt.setDouble(2, order.getOrderTotal());
             stmt.setDate(3, order.getDate());
@@ -55,7 +53,6 @@ public class OrderDaoImpl implements OrderDao {
             stmt.setInt(5, order.getEshopId());
             int i = stmt.executeUpdate();
             System.out.println(i);
-            con.commit();
         } catch (SQLException e) {
             LOGGER.error("could not save order - " + e);
         }

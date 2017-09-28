@@ -36,5 +36,6 @@ public class ProductDaoImplTest {
         products.sortProductsByPriceDesc();
         Product p = products.get(0);
         assertThat(p).isEqualTo(new Product(1, "MacBook Pro 15", 2355.50, 5));
+        assertThat(products.getProducts()).contains(new Product(1, "MacBook Pro 15", 2355.50, 5));
     }
 }
