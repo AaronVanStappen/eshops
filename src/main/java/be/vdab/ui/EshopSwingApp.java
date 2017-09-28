@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class EshopSwingApp extends JFrame {
-    private JTable tblProducts = new JTable();
-    private JScrollPane spProducts = new JScrollPane(tblProducts);
 
     private EshopSwingApp() {
         initComponents();
@@ -16,14 +14,18 @@ public class EshopSwingApp extends JFrame {
     private void initComponents() {
         setTitle("E-shop App");
         setSize(1200, 700);
-        setLocation(200, 200);
+        setLocation(10,10);
+       // setLocationRelativeTo(null);
         setVisible(true);
     }
 
     private void layoutComponents() {
-        JPanel middlePanel = new JPanel();
-        middlePanel.add(spProducts);
-        add(middlePanel, BorderLayout.CENTER);
+        add(new JLabel("hello"), BorderLayout.NORTH);
+        JPanel p = new LogInUI();
+        float alignmentX = p.getAlignmentX();
+        System.out.println(alignmentX);
+        p.setBackground(Color.BLUE);
+        add(p, BorderLayout.CENTER);
     }
 
     private void initListeners() {
