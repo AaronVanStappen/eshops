@@ -2,13 +2,18 @@ package be.vdab.ui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.beans.PropertyVetoException;
 
 public class EshopSwingApp extends JFrame {
+    private JPanel panel = new JPanel();
+    private JInternalFrame f = new JInternalFrame();
+    private JDesktopPane desktop = new JDesktopPane();
 
     public EshopSwingApp() {
         initComponents();
         layoutComponents();
         initListeners();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
@@ -18,19 +23,25 @@ public class EshopSwingApp extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    private void layoutComponents() {
+    public void layoutComponents() {
         LogInUI login = new LogInUI();
-        if (login.hasVisibility()){
-            add(login, BorderLayout.CENTER);
-        } else {
-            JLabel welkom = new JLabel();
-            welkom.setText("Welkom " + login.getCustomer().getFirst_name() + ", you magnificent BEAST!");
-            add(welkom);
-        }
+        JLabel welkom = new JLabel();
+        welkom.setText("Welcome " + ", you magnificent BEAST!");
+        panel.add(welkom);
+        desktop.setOpaque(false);
+        f.add(panel, BorderLayout.CENTER);
+        f.setSize(300, 200);
+        f.setVisible(true);
+        desktop.add(f);
+        setContentPane(desktop);
     }
 
     private void initListeners() {
 
+    }
+
+    public JDesktopPane getDesktop() {
+        return desktop;
     }
 
     public static void main(String[] args) {

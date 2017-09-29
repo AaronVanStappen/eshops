@@ -7,15 +7,18 @@ import be.vdab.entiteiten.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.beans.PropertyVetoException;
 import java.sql.SQLException;
 
-public class LogInUI extends JPanel {
+public class LogInUI extends JInternalFrame {
     private JTextField username;
     private JPasswordField password;
     private JLabel usernameLabel;
     private JLabel passwordLabel;
     private JButton btnLogin;
-    private boolean visible = true;
+    private JInternalFrame internal = new JInternalFrame();
+    private EshopSwingApp shop = new EshopSwingApp();
+    private boolean loginSuccess = true;
     private Customer customer;
 
     public LogInUI() {
@@ -24,25 +27,28 @@ public class LogInUI extends JPanel {
         initListeners();
     }
 
-    private void initComponents() {
-        username = new JTextField(10);
-        password = new JPasswordField(10);
+    private void initComponents()  {
+        username = new JTextField(20);
+        password = new JPasswordField(20);
         usernameLabel = new JLabel("username");
         passwordLabel = new JLabel("password");
         btnLogin = new JButton("login");
-        Dimension dim = new Dimension();
-        dim.setSize(25, 5);
     }
 
     private void layoutComponents() {
-        GridLayout layout = new GridLayout();
-        layout.setColumns(5);
-        layout.setRows(15);
-        add(usernameLabel);
-        add(username);
-        add(passwordLabel);
-        add(password);
-        add(btnLogin);
+        JPanel panel = new JPanel();
+        panel.add(usernameLabel, BorderLayout.CENTER);
+        panel.add(username, BorderLayout.CENTER);
+        panel.add(passwordLabel, BorderLayout.CENTER);
+        panel.add(password, BorderLayout.CENTER);
+        panel.add(btnLogin, BorderLayout.CENTER);
+        internal.add(panel, BorderLayout.CENTER);
+        //setBounds(50, 50, 100, 100);
+        setResizable(true);
+        setMaximizable(true);
+        setIconifiable(true);
+        setTitle("LogIn");
+        setVisible(true);
     }
 
     private void initListeners() {
@@ -56,26 +62,53 @@ public class LogInUI extends JPanel {
             User user = new CustomerDaoImpl().findByLoginAndUsername(userLog, passwordS);
             if (user != null) {
                 customer = new CustomerDaoImpl().findCustomers(userLog);
-                giveVisibility(false);
-                setVisible(false);
-                new EshopSwingApp();
+                shop.getDesktop().removeAll();
+                setLoginSuccess(true);
             } else {
                JOptionPane.showMessageDialog( null, "username and/or password incorrect");
                username.setText("");
                password.setText("");
+               new LogInUI();
             }
         });
     }
 
-    private void giveVisibility(boolean b) {
-        this.visible = b;
-    }
-
-    public boolean hasVisibility() {
-        return visible;
-    }
-
-    public Customer getCustomer() {
+    protected Customer getCustomer() {
         return customer;
     }
+
+    public void setLoginSuccess(boolean loginSuccess) {
+        this.loginSuccess = loginSuccess;
+    }
+
+    public boolean isLoginSuccess() {
+        return loginSuccess;
+    }
 }
+
+/*public class Main {
+    public static void main(String args[]) {
+        JFrame f = new JFrame("Sample");
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JLayeredPane desktop = new JDesktopPane();
+        desktop.setOpaque(false);
+        desktop.add(new SelfInternalFrame("1"), JLayeredPane.POPUP_LAYER);
+        f.add(desktop, BorderLayout.CENTER);
+        f.setSize(300, 200);
+        f.setVisible(true);
+    }
+
+}
+
+class SelfInternalFrame extends JInternalFrame {
+    public SelfInternalFrame(String s) {
+        getContentPane().add(new JLabel(s), BorderLayout.CENTER);
+        setBounds(50, 50, 100, 100);
+        setResizable(true);
+        setClosable(true);
+        setMaximizable(true);
+        setIconifiable(true);
+        setTitle(s);
+        setVisible(true);
+    }
+}*/
