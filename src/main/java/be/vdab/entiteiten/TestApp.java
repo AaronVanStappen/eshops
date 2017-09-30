@@ -10,7 +10,7 @@ public class TestApp {
     private static final Logger LOGGER = Logger.getLogger(TestApp.class);
 
     public static void main(String[] args) {
-        ShopDao test = new ShopDaoImpl();
+    /*    ShopDao test = new ShopDaoImpl();
         test.listAllShops().forEach(System.out::println);
         ProductDao test2 = new ProductDaoImpl();
         test2.findProducts("Mac").forEach(System.out::println);
@@ -30,6 +30,6 @@ public class TestApp {
         test5.removeProductFromBasket(new Product(0, "Magic Mouse", 64.99, 5));
         System.out.println(test5.getBasket());
         test5.clearBasket();
-        System.out.println(test5.getBasket());
+        System.out.println(test5.getBasket());*/
     }
 }

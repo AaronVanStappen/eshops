@@ -1,14 +1,12 @@
 package be.vdab.ui;
 
-import be.vdab.dao.CustomerDao;
 import be.vdab.dao.impl.CustomerDaoImpl;
 import be.vdab.entiteiten.Customer;
 import be.vdab.entiteiten.User;
+import com.sun.org.apache.bcel.internal.generic.Select;
 
 import javax.swing.*;
 import java.awt.*;
-import java.beans.PropertyVetoException;
-import java.sql.SQLException;
 
 public class LogInUI extends JInternalFrame {
     private JTextField username;
@@ -16,15 +14,14 @@ public class LogInUI extends JInternalFrame {
     private JLabel usernameLabel;
     private JLabel passwordLabel;
     private JButton btnLogin;
-    private JInternalFrame internal = new JInternalFrame();
-    private EshopSwingApp shop = new EshopSwingApp();
-    private boolean loginSuccess = true;
+    private JInternalFrame frame = new JInternalFrame();
+    private JPanel panel = new JPanel();
     private Customer customer;
 
-    public LogInUI() {
+    public LogInUI(JDesktopPane desktop) {
         initComponents();
         layoutComponents();
-        initListeners();
+        initListeners(desktop);
     }
 
     private void initComponents()  {
@@ -34,24 +31,21 @@ public class LogInUI extends JInternalFrame {
         passwordLabel = new JLabel("password");
         btnLogin = new JButton("login");
     }
-
     private void layoutComponents() {
-        JPanel panel = new JPanel();
         panel.add(usernameLabel, BorderLayout.CENTER);
         panel.add(username, BorderLayout.CENTER);
         panel.add(passwordLabel, BorderLayout.CENTER);
         panel.add(password, BorderLayout.CENTER);
         panel.add(btnLogin, BorderLayout.CENTER);
-        internal.add(panel, BorderLayout.CENTER);
-        //setBounds(50, 50, 100, 100);
-        setResizable(true);
-        setMaximizable(true);
-        setIconifiable(true);
+        add(panel, BorderLayout.CENTER);
         setTitle("LogIn");
         setVisible(true);
+        frame.add(panel, BorderLayout.CENTER);
+        frame.setSize(1200, 700);
+        frame.setVisible(true);
     }
 
-    private void initListeners() {
+    protected void initListeners(JDesktopPane desktop) {
         btnLogin.addActionListener(e -> {
             String userLog = username.getText();
             char[] passwordC = password.getPassword();
@@ -62,53 +56,24 @@ public class LogInUI extends JInternalFrame {
             User user = new CustomerDaoImpl().findByLoginAndUsername(userLog, passwordS);
             if (user != null) {
                 customer = new CustomerDaoImpl().findCustomers(userLog);
-                shop.getDesktop().removeAll();
-                setLoginSuccess(true);
+                this.frame.setVisible(false);
+                this.frame.dispose();
+                this.frame.remove(0);
+                desktop.add(new SelectShopUI(desktop).getFrame());
+                this.frame.repaint();
             } else {
-               JOptionPane.showMessageDialog( null, "username and/or password incorrect");
-               username.setText("");
-               password.setText("");
-               new LogInUI();
+                JOptionPane.showMessageDialog( null, "username and/or password incorrect");
+                username.setText("");
+                password.setText("");
             }
         });
+    }
+
+    public JInternalFrame getFrame() {
+        return frame;
     }
 
     protected Customer getCustomer() {
         return customer;
     }
-
-    public void setLoginSuccess(boolean loginSuccess) {
-        this.loginSuccess = loginSuccess;
-    }
-
-    public boolean isLoginSuccess() {
-        return loginSuccess;
-    }
 }
-
-/*public class Main {
-    public static void main(String args[]) {
-        JFrame f = new JFrame("Sample");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JLayeredPane desktop = new JDesktopPane();
-        desktop.setOpaque(false);
-        desktop.add(new SelfInternalFrame("1"), JLayeredPane.POPUP_LAYER);
-        f.add(desktop, BorderLayout.CENTER);
-        f.setSize(300, 200);
-        f.setVisible(true);
-    }
-
-}
-
-class SelfInternalFrame extends JInternalFrame {
-    public SelfInternalFrame(String s) {
-        getContentPane().add(new JLabel(s), BorderLayout.CENTER);
-        setBounds(50, 50, 100, 100);
-        setResizable(true);
-        setClosable(true);
-        setMaximizable(true);
-        setIconifiable(true);
-        setTitle(s);
-        setVisible(true);
-    }
-}*/

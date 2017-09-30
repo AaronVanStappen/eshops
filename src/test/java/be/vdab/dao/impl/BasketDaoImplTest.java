@@ -32,7 +32,7 @@ public class BasketDaoImplTest {
     @Before
     public void init() {
         for(Product product : data) {
-            basket.addProductToBasket(product, 10);
+            basket.addProductToBasket(product);
         }
     }
 
@@ -43,21 +43,21 @@ public class BasketDaoImplTest {
         assertThat(basket2).isInstanceOf(BasketDaoImpl.class);
         assertThat(basket2.getBasket().getProducten()).hasSize(10);
         assertThat(basket2.getBasket().getProducten())
-                .containsKeys(new Product(10, "guitar10", 3999.79, 25));
+                .contains(new Product(10, "guitar10", 3999.79, 25));
         Product product = new Product(11, "guitar11", 14999.99, 12);
-        basket2.addProductToBasket(product, 1);
-        assertThat(basket2.getBasket().getProducten()).containsKeys(product);
+        basket2.addProductToBasket(product);
+        assertThat(basket2.getBasket().getProducten()).contains(product);
         basket.removeProductFromBasket(product);
-        assertThat(basket2.getBasket().getProducten()).doesNotContainKeys(product);
+        assertThat(basket2.getBasket().getProducten()).doesNotContain(product);
     }
 
     @Test
     public void addProductToBasket() {
         Product product = new Product(11, "guitar11", 1249.00, 5);
-        basket.addProductToBasket(product, 1);
+        basket.addProductToBasket(product);
         assertThat(basket.getBasket().getProducten()).hasSize(11);
         assertThat(basket.getBasket().getProducten())
-                .containsKeys(new Product(11, "guitar11", 1249.00, 5));
+                .contains(new Product(11, "guitar11", 1249.00, 5));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class BasketDaoImplTest {
         basket.removeProductFromBasket(new Product(1, "guitar1", 3599.99, 5));
         assertThat(basket.getBasket().getProducten()).hasSize(9);
         assertThat(basket.getBasket().getProducten())
-                .doesNotContainKeys(new Product(1, "guitar1", 3599.99, 5));
+                .doesNotContain(new Product(1, "guitar1", 3599.99, 5));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class BasketDaoImplTest {
         assertThat(basket.getBasket()).isInstanceOf(Basket.class);
         assertThat(basket.getBasket().getProducten()).hasSize(10);
         assertThat(basket.getBasket().getProducten())
-                .containsKeys(new Product(1, "guitar1", 3599.99, 5));
+                .contains(new Product(1, "guitar1", 3599.99, 5));
     }
 
     @Test

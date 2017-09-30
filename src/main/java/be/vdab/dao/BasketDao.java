@@ -8,7 +8,7 @@ public interface BasketDao {
 
     void saveOrUpdateBasket(Basket basket);
 
-    void addProductToBasket(Product product, double amount);
+    void addProductToBasket(Product product);
 
     void removeProductFromBasket(Product product);
 

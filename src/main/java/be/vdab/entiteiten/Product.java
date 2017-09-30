@@ -5,6 +5,7 @@ public class Product {
     private String name;
     private double price;
     private int stock;
+    private int amount;
 
     public Product(String name, double price, int stock) {
         this.setName(name);
@@ -19,6 +20,14 @@ public class Product {
         this.setStock(stock);
     }
 
+    public Product(int id, String name, double price, int stock, int amount) {
+        this.setId(id);
+        this.setName(name);
+        this.setPrice(price);
+        this.setStock(stock);
+        this.setAmount(amount);
+    }
+
     public int getId() {
         return id;
     }
@@ -27,7 +36,7 @@ public class Product {
         this.id = id;
     }
 
-    private String getName() {
+    public String getName() {
         return name;
     }
 
@@ -35,7 +44,7 @@ public class Product {
         this.name = name;
     }
 
-    private double getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -43,12 +52,20 @@ public class Product {
         this.price = price;
     }
 
-    private int getStock() {
+    public int getStock() {
         return stock;
     }
 
     private void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     @Override
@@ -79,6 +96,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return id + ", " + name + ", " + price + ", " + stock;
+        return id + ", " + name + ", " + price + ", " + stock + ", " + amount;
     }
 }

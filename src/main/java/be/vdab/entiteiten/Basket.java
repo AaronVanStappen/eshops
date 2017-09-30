@@ -7,19 +7,19 @@ import java.util.Map;
 
 public class Basket {
 
-    private Map<Product, Double> producten = new HashMap<>();
+    private List<Product> producten = new ArrayList<>();
 
     public Basket() {}
 
-    public void addToBasket(Product product, double amount) {
-        producten.put(product, amount);
+    public void addToBasket(Product product) {
+        producten.add(product);
     }
 
     public void removeFromBasket(Product product) {
         producten.remove(product);
     }
 
-    public Map<Product, Double> getProducten() {
+    public List<Product> getProducten() {
         return producten;
     }
 
@@ -40,6 +40,6 @@ public class Basket {
 
     @Override
     public String toString() {
-        return producten.keySet().toString() + ", " + producten.values().toString();
+        return producten.toString();
     }
 }
