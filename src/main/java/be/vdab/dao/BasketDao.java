@@ -1,10 +1,12 @@
 package be.vdab.dao;
 
 import be.vdab.entiteiten.Basket;
+import be.vdab.entiteiten.Order;
 import be.vdab.entiteiten.Product;
 
+import java.sql.SQLException;
+
 public interface BasketDao {
-    void checkOutBasket(Basket basket);
 
     void saveOrUpdateBasket(Basket basket);
 
@@ -15,4 +17,8 @@ public interface BasketDao {
     Basket getBasket();
 
     void clearBasket();
+
+    void addToDB(Order order, int productId, int amount) throws SQLException;
+
+    int getLastId();
 }

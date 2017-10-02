@@ -17,6 +17,13 @@ public class LogInUI extends JInternalFrame {
     private JInternalFrame frame = new JInternalFrame();
     private JPanel panel = new JPanel();
     private Customer customer;
+    private int customerId;
+    private String customerName;
+    private String customerFirst;
+    private String customerEmail;
+    private String customerAddress;
+
+
 
     public LogInUI(JDesktopPane desktop) {
         initComponents();
@@ -55,11 +62,19 @@ public class LogInUI extends JInternalFrame {
             }
             User user = new CustomerDaoImpl().findByLoginAndUsername(userLog, passwordS);
             if (user != null) {
-                customer = new CustomerDaoImpl().findCustomers(userLog);
+                customerId = new CustomerDaoImpl().findCustomers(userLog).getId();
+                customerName = new CustomerDaoImpl().findCustomers(userLog).getName();
+                customerFirst = new CustomerDaoImpl().findCustomers(userLog).getFirst_name();
+                customerEmail = new CustomerDaoImpl().findCustomers(userLog).getEmail();
+                customerAddress = new CustomerDaoImpl().findCustomers(userLog).getDelivAd();
+
+                customer = new Customer(customerId, userLog, passwordS, customerName, customerFirst, customerEmail,
+                        customerAddress);
+
                 this.frame.setVisible(false);
                 this.frame.dispose();
                 this.frame.remove(0);
-                desktop.add(new SelectShopUI(desktop).getFrame());
+                desktop.add(new SelectShopUI(desktop, customerId).getFrame());
                 this.frame.repaint();
             } else {
                 JOptionPane.showMessageDialog( null, "username and/or password incorrect");
@@ -73,7 +88,7 @@ public class LogInUI extends JInternalFrame {
         return frame;
     }
 
-    protected Customer getCustomer() {
-        return customer;
+    public int getCustomerId() {
+        return customerId;
     }
 }

@@ -31,5 +31,8 @@ public class TestApp {
         System.out.println(test5.getBasket());
         test5.clearBasket();
         System.out.println(test5.getBasket());*/
+
+        BasketDao basket = new BasketDaoImpl();
+        System.out.println(basket.getLastId());
     }
 }

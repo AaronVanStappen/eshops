@@ -15,11 +15,15 @@ public class SelectShopUI extends JInternalFrame {
     private JButton btnChoose;
     private ShopDao eshopdao;
     private Eshop eshop;
+    private int eshopId;
+    private String eshopInfo;
+    private String eshopAddress;
 
-    public SelectShopUI(JDesktopPane desktop) {
+
+    public SelectShopUI(JDesktopPane desktop, int customerId) {
         initComponents();
         layoutComponents();
-        initListeners(desktop);
+        initListeners(desktop, customerId);
     }
 
     private void initComponents() {
@@ -49,14 +53,15 @@ public class SelectShopUI extends JInternalFrame {
         frame.setVisible(true);
     }
 
-    protected void initListeners(JDesktopPane desktop) {
+    private void initListeners(JDesktopPane desktop, int customerId) {
         btnChoose.addActionListener(e -> {
             if (cbShops.getSelectedItem() != null) {
-                eshop = (Eshop) cbShops.getSelectedItem();
-                this.frame.setVisible(false);
-                this.frame.dispose();
-                this.frame.remove(0);
-                desktop.add(new ProductListUI(desktop).getFrame());
+                eshopId = ((Eshop) cbShops.getSelectedItem()).getId();
+                eshopInfo = ((Eshop) cbShops.getSelectedItem()).getInfo();
+                eshopAddress = ((Eshop) cbShops.getSelectedItem()).getAddress();
+                eshop = new Eshop(eshopId, eshopInfo, eshopAddress);
+                frame.setVisible(false);
+                desktop.add(new ProductListUI(desktop, customerId, eshopId).getFrame());
                 this.frame.repaint();
             } else {
                 JOptionPane.showMessageDialog(null, "select a shop, please");
@@ -68,7 +73,7 @@ public class SelectShopUI extends JInternalFrame {
         return frame;
     }
 
-    public Eshop getEshop() {
-        return this.eshop;
+    public int getEshopId() {
+        return eshopId;
     }
 }

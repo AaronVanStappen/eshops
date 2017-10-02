@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface ProductDao {
     List<Product> findProducts(String productname);
-    void sortProducts();
-    void sortProductsByPriceAsc();
-    void sortProductsByPriceDesc();
+    List<Product> sortProducts();
+    List<Product> sortProductsByPriceAsc();
+    List<Product> sortProductsByPriceDesc();
     List<Product> getProducts();
     Product get(int i);
 }

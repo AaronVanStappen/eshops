@@ -21,8 +21,6 @@ public class EshopApp extends JFrame {
 
     public void layoutComponents() {
         LogInUI login = new LogInUI(desktop);
-        JLabel welkom = new JLabel();
-        welkom.setText("Welcome " + ", you magnificent BEAST!");
         desktop.add(login.getFrame());
         setContentPane(desktop);
     }
