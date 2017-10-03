@@ -26,6 +26,7 @@ public class ProductListUI extends JInternalFrame {
     private JList<Product> productJList, basket;
     private JList<OrderView> orderList;
     private JButton btnAdd, btnRemove, btnFindProduct, btnSort, btnSortPriceAsc, btnSortPriceDesc, btnOrder;
+    private double orderTotal;
 
     public ProductListUI(JDesktopPane desktop, int customerId, int eshopId) {
         initComponents();
@@ -150,23 +151,25 @@ public class ProductListUI extends JInternalFrame {
             String pay = "visa";
             Date date = Date.valueOf(LocalDate.now());
             for (int i = 0; i < listModel.size(); i++) {
-                double orderTotal = listModel.getElementAt(i).getAmount() * listModel.getElementAt(i).getPrice();
+                double totalPerOrderItem = listModel.getElementAt(i).getAmount() * listModel.getElementAt(i).getPrice();
+                orderTotal += totalPerOrderItem;
                 int productId = listModel.getElementAt(i).getId();
                 int amount = listModel.getElementAt(i).getAmount();
                 System.out.println("amount: " + amount + " prod: " + productId + " shopId: " + eshopId + " customerId: " + customerId +
-                " order total: " + orderTotal);
+                " order total: " + totalPerOrderItem);
                 try {
-                    basketDao.addToDB(new Order(pay, orderTotal, date, customerId, eshopId), productId, amount);
+                    basketDao.addToDB(new Order(pay, totalPerOrderItem, date, customerId, eshopId), productId, amount);
                     orderListModel.addElement(new OrderView(productId, listModel.getElementAt(i).getName(), date, listModel.getElementAt(i).getPrice(),
-                            amount, orderTotal));
-                    System.out.println("orderList: " + orderListModel.getElementAt(i));
-                    this.frame.setVisible(false);
-                    this.frame.dispose();
-                    desktop.add(new OrderOverviewUI(desktop, orderListModel).getFrame());
+                            amount, totalPerOrderItem));
+
                 } catch (SQLException e1) {
                     JOptionPane.showMessageDialog(null, "could not add basket to database");
                 }
             }
+            System.out.println("orderTotal: " + orderTotal);
+            this.frame.setVisible(false);
+            this.frame.dispose();
+            desktop.add(new OrderOverviewUI(desktop, orderListModel, orderTotal).getFrame());
         });
     }
 

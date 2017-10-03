@@ -12,12 +12,11 @@ public class OrderOverviewUI extends JInternalFrame{
     private JPanel centralPanel, southPanel;
     private JButton btnClose;
     private JLabel lblPriceTag, lblTotalPrice;
-    private static double totalPrice;
 
-    public OrderOverviewUI(JDesktopPane desktop, DefaultListModel<OrderView> orderListModel){
+    public OrderOverviewUI(JDesktopPane desktop, DefaultListModel<OrderView> orderListModel, double orderTotal){
         initComponents(orderListModel);
-        layoutComponents(orderListModel);
-        initListeners(desktop);
+        layoutComponents(orderTotal);
+        initListeners();
     }
 
     private void initComponents(DefaultListModel<OrderView> orderListModel) {
@@ -30,11 +29,10 @@ public class OrderOverviewUI extends JInternalFrame{
 
     }
 
-    private void layoutComponents(DefaultListModel<OrderView> orderListModel) {
+    private void layoutComponents(Double orderTotal) {
         southPanel.add(btnClose, BorderLayout.EAST);
         southPanel.add(lblPriceTag, BorderLayout.EAST);
-        totalPrice = this.getTotalPrice(orderListModel);
-        lblTotalPrice.setText(String.valueOf(totalPrice));
+        lblTotalPrice.setText(String.valueOf(orderTotal));
         southPanel.add(lblTotalPrice, BorderLayout.EAST);
         centralPanel.add(orders, BorderLayout.CENTER);
         frame.add(southPanel, BorderLayout.SOUTH);
@@ -43,20 +41,21 @@ public class OrderOverviewUI extends JInternalFrame{
         frame.setVisible(true);
     }
 
-    private void initListeners(JDesktopPane desktop) {
+    private void initListeners() {
         btnClose.addActionListener(e -> {
-            desktop.removeAll();
+            frame.dispose();
+            System.exit(0);
         });
     }
 
-    private double getTotalPrice(DefaultListModel<OrderView> orderList) {
+    /*private double getTotal(DefaultListModel<OrderView> orderList) {
         double price = 0.00;
         for (int i = 0; i < orderList.size(); i++) {
             price = price + orderList.getElementAt(i).getTotalPrice();
         }
-        System.out.println(price);
+        System.out.println("prijs= " + price);
         return price;
-    }
+    }*/
 
     public JInternalFrame getFrame() {
         return frame;
