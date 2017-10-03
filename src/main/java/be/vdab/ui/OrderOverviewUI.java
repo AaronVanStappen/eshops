@@ -3,7 +3,6 @@ package be.vdab.ui;
 import be.vdab.entiteiten.OrderView;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 public class OrderOverviewUI extends JInternalFrame{
@@ -13,7 +12,7 @@ public class OrderOverviewUI extends JInternalFrame{
     private JButton btnClose;
     private JLabel lblPriceTag, lblTotalPrice;
 
-    public OrderOverviewUI(JDesktopPane desktop, DefaultListModel<OrderView> orderListModel, double orderTotal){
+    public OrderOverviewUI(DefaultListModel<OrderView> orderListModel, double orderTotal){
         initComponents(orderListModel);
         layoutComponents(orderTotal);
         initListeners();
@@ -47,15 +46,6 @@ public class OrderOverviewUI extends JInternalFrame{
             System.exit(0);
         });
     }
-
-    /*private double getTotal(DefaultListModel<OrderView> orderList) {
-        double price = 0.00;
-        for (int i = 0; i < orderList.size(); i++) {
-            price = price + orderList.getElementAt(i).getTotalPrice();
-        }
-        System.out.println("prijs= " + price);
-        return price;
-    }*/
 
     public JInternalFrame getFrame() {
         return frame;

@@ -7,12 +7,6 @@ public class Product {
     private int stock;
     private int amount;
 
-    public Product(String name, double price, int stock) {
-        this.setName(name);
-        this.setPrice(price);
-        this.setStock(stock);
-    }
-
     public Product(int id, String name, double price, int stock) {
         this.setId(id);
         this.setName(name);
@@ -76,21 +70,10 @@ public class Product {
         Product product = (Product) o;
 
         return this.getId() == product.getId();
-
-        /*return getId()==product.getId() && Double.compare(product.getPrice(), getPrice())==0
-               && getStock()==product.getStock() && getName().equals(product.getName());*/
     }
 
     @Override
     public int hashCode() {
-        /*int result;
-        long temp;
-        result = getId();
-        result = 31 * result + getName().hashCode();
-        temp = Double.doubleToLongBits(getPrice());
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + getStock();
-        return result;*/
         return id;
     }
 

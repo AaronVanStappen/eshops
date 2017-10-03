@@ -3,7 +3,6 @@ package be.vdab.ui;
 import be.vdab.dao.impl.CustomerDaoImpl;
 import be.vdab.entiteiten.Customer;
 import be.vdab.entiteiten.User;
-import com.sun.org.apache.bcel.internal.generic.Select;
 
 import javax.swing.*;
 import java.awt.*;
@@ -86,9 +85,5 @@ public class LogInUI extends JInternalFrame {
 
     public JInternalFrame getFrame() {
         return frame;
-    }
-
-    public int getCustomerId() {
-        return customerId;
     }
 }

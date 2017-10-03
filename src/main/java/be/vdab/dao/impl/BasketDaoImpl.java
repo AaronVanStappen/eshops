@@ -4,7 +4,6 @@ import be.vdab.jdbc.ConnectionDao;
 import be.vdab.dao.BasketDao;
 import be.vdab.entiteiten.Basket;
 import be.vdab.entiteiten.Order;
-import be.vdab.entiteiten.Product;
 import com.mysql.jdbc.PreparedStatement;
 import org.apache.log4j.Logger;
 
@@ -15,32 +14,6 @@ import java.sql.Connection;
 public class BasketDaoImpl implements BasketDao {
     private Basket basket = new Basket();
     private static final Logger LOGGER = Logger.getLogger(BasketDaoImpl.class);
-    private Connection con;
-
-    @Override
-    public void saveOrUpdateBasket(Basket basket) {
-        this.basket = basket;
-    }
-
-    @Override
-    public void addProductToBasket(Product product) {
-        basket.addToBasket(product);
-    }
-
-    @Override
-    public void removeProductFromBasket(Product product) {
-        basket.removeFromBasket(product);
-    }
-
-    @Override
-    public Basket getBasket() {
-        return basket;
-    }
-
-    @Override
-    public void clearBasket() {
-        basket.getProducten().clear();
-    }
 
     @Override
     public String toString() {
@@ -101,7 +74,6 @@ public class BasketDaoImpl implements BasketDao {
              ResultSet rs = stmt.executeQuery(getId)) {
             if (rs.next()) {
                 id = rs.getInt("lastId");
-                System.out.println("last id in orders: " + id);
             }
         } catch (SQLException e) {
             LOGGER.error("last id in orders - " + e);

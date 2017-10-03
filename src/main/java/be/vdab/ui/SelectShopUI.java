@@ -72,8 +72,4 @@ public class SelectShopUI extends JInternalFrame {
     public JInternalFrame getFrame() {
         return frame;
     }
-
-    public int getEshopId() {
-        return eshopId;
-    }
 }

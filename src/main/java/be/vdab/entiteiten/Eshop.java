@@ -5,11 +5,6 @@ public class Eshop {
     private String info;
     private String address;
 
-    public Eshop(String info, String address) {
-        this.setInfo(info);
-        this.setAddress(address);
-    }
-
     public Eshop(int id, String info, String address) {
         this.setId(id);
         this.setInfo(info);

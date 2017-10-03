@@ -5,11 +5,6 @@ public class User {
     private String username;
     private String password;
 
-    public User(String username, String password) {
-        this.setUsername(username);
-        this.setPassword(password);
-    }
-
     public User(int id, String username, String password) {
         this.setId(id);
         this.setUsername(username);
@@ -23,16 +18,8 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     private void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     private void setPassword(String password) {

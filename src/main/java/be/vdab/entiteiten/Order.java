@@ -18,23 +18,6 @@ public class Order {
         this.setEshopId(eshopId);
     }
 
-    public Order(int id, String paymethod, double orderTotal, Date date, int customerId, int eshopId) {
-        this.setId(id);
-        this.setPaymethod(paymethod);
-        this.setOrderTotal(orderTotal);
-        this.setDate(date);
-        this.setCustomerId(customerId);
-        this.setEshopId(eshopId);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getPaymethod() {
         return paymethod;
     }

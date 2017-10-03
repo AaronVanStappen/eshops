@@ -6,14 +6,6 @@ public class Customer extends User {
     private String email;
     private String delivAd;
 
-    public Customer( String username, String password, String name, String first_name, String email, String delivAd) {
-        super(username, password);
-        this.setName(name);
-        this.setFirst_name(first_name);
-        this.setEmail(email);
-        this.setDelivAd(delivAd);
-    }
-
     public Customer(int id, String username, String password, String name, String first_name, String email, String delivAd) {
         super(id, username, password);
         this.setName(name);

@@ -12,7 +12,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Types;
 import java.time.LocalDate;
 
 public class ProductListUI extends JInternalFrame {
@@ -92,7 +91,6 @@ public class ProductListUI extends JInternalFrame {
                 int i = listModel.indexOf(productJList.getSelectedValue());
                 int amount = listModel.getElementAt(i).getAmount();
                 int stock = listModel.getElementAt(i).getStock();
-                System.out.println("calling stock: " + stock);
                 amount++;
                     if (stock >= amount) {
                         listModel.remove(i);
@@ -155,21 +153,18 @@ public class ProductListUI extends JInternalFrame {
                 orderTotal += totalPerOrderItem;
                 int productId = listModel.getElementAt(i).getId();
                 int amount = listModel.getElementAt(i).getAmount();
-                System.out.println("amount: " + amount + " prod: " + productId + " shopId: " + eshopId + " customerId: " + customerId +
-                " order total: " + totalPerOrderItem);
                 try {
                     basketDao.addToDB(new Order(pay, totalPerOrderItem, date, customerId, eshopId), productId, amount);
-                    orderListModel.addElement(new OrderView(productId, listModel.getElementAt(i).getName(), date, listModel.getElementAt(i).getPrice(),
-                            amount, totalPerOrderItem));
+                    orderListModel.addElement(new OrderView(productId, listModel.getElementAt(i).getName(),
+                            date, listModel.getElementAt(i).getPrice(), amount, totalPerOrderItem));
 
                 } catch (SQLException e1) {
                     JOptionPane.showMessageDialog(null, "could not add basket to database");
                 }
             }
-            System.out.println("orderTotal: " + orderTotal);
             this.frame.setVisible(false);
             this.frame.dispose();
-            desktop.add(new OrderOverviewUI(desktop, orderListModel, orderTotal).getFrame());
+            desktop.add(new OrderOverviewUI(orderListModel, orderTotal).getFrame());
         });
     }
 

@@ -19,48 +19,24 @@ public class OrderView {
         setTotalPrice(totalPrice);
     }
 
-    public int getProdId() {
-        return prodId;
-    }
-
     public void setProdId(int prodId) {
         this.prodId = prodId;
-    }
-
-    public String getProdName() {
-        return prodName;
     }
 
     public void setProdName(String prodName) {
         this.prodName = prodName;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public int getAmount() {
-        return amount;
     }
 
     public void setAmount(int amount) {
         this.amount = amount;
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
-    }
-
-    public Date getDate() {
-        return date;
     }
 
     public void setDate(Date date) {

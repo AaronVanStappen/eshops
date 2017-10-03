@@ -3,7 +3,6 @@ package be.vdab.ui;
 import javax.swing.*;
 
 public class EshopApp extends JFrame {
-    private JPanel centerPanel = new JPanel();
     private JDesktopPane desktop = new JDesktopPane();
 
     public EshopApp() {
@@ -23,10 +22,6 @@ public class EshopApp extends JFrame {
         LogInUI login = new LogInUI(desktop);
         desktop.add(login.getFrame());
         setContentPane(desktop);
-    }
-
-    public JDesktopPane getDesktop() {
-        return desktop;
     }
 
     public static void main(String[] args) {
