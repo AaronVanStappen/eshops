@@ -35,8 +35,8 @@ public class User {
         return password;
     }
 
-    private void setPassword(String pasword) {
-        this.password = pasword;
+    private void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

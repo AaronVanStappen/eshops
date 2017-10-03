@@ -14,8 +14,8 @@ public class Customer extends User {
         this.setDelivAd(delivAd);
     }
 
-    public Customer(int id, String username, String pasword, String name, String first_name, String email, String delivAd) {
-        super(id, username, pasword);
+    public Customer(int id, String username, String password, String name, String first_name, String email, String delivAd) {
+        super(id, username, password);
         this.setName(name);
         this.setFirst_name(first_name);
         this.setEmail(email);
