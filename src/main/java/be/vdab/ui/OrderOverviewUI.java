@@ -20,7 +20,7 @@ public class OrderOverviewUI extends JInternalFrame{
 
     private void initComponents(DefaultListModel<OrderView> orderListModel) {
         orders = new JList(orderListModel);
-        lblPriceTag = new JLabel("total price");
+        lblPriceTag = new JLabel("total price:");
         lblTotalPrice = new JLabel();
         centralPanel = new JPanel();
         southPanel = new JPanel();

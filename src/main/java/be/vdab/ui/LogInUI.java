@@ -51,7 +51,7 @@ public class LogInUI extends JInternalFrame {
         frame.setVisible(true);
     }
 
-    protected void initListeners(JDesktopPane desktop) {
+    private void initListeners(JDesktopPane desktop) {
         btnLogin.addActionListener(e -> {
             String userLog = username.getText();
             char[] passwordC = password.getPassword();

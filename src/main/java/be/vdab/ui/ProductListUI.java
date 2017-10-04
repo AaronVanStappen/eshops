@@ -96,7 +96,7 @@ public class ProductListUI extends JInternalFrame {
                         listModel.remove(i);
                         listModel.insertElementAt(new Product(product.getId(), product.getName(), product.getPrice(),
                                 product.getStock(), amount), i);
-                    } else if (amount > product.getAmount()) {
+                    } else if (amount > product.getStock()) {
                         JOptionPane.showMessageDialog(null, "We're sorry! It seems your order amount" +
                                 " exceeds our stock of this product.");
                     }
